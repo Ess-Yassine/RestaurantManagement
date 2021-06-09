@@ -10,10 +10,10 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ma.eheio</groupId>
-	<artifactId>TheGourmetSense</artifactId>
+	<artifactId>RestaurantManagement</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>TheGourmetSense</name>
-	<description>Demo project for Spring Boot</description>
+	<name>RestaurantManagement</name>
+	<description>project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>

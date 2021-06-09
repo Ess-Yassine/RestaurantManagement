@@ -1,11 +1,11 @@
 package ma.eheio.RestaurantManagement.entity;
 
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.MapsId;
 import javax.persistence.Table;
 
 
@@ -13,16 +13,24 @@ import javax.persistence.Table;
 @Table(name ="Cart_items")
 public class CartItem {
 
+	/*
 	@EmbeddedId
+	@Column(name = "id")
 	CartItemKey id;
+	*/
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	private Integer id;
 	
 	@ManyToOne
-	@MapsId("mealId")
+	//@MapsId("mealId")
 	@JoinColumn(name = "meal_id")
 	private Meal meal;
 	
 	@ManyToOne
-	@MapsId("customerId")
+	//@MapsId("customerId")
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
 	
@@ -33,7 +41,7 @@ public class CartItem {
 		super();
 	}
 
-	public CartItem(CartItemKey id, Meal meal, Customer customer, Integer quantity) {
+	public CartItem(Integer id, Meal meal, Customer customer, Integer quantity) {
 		super();
 		this.id = id;
 		this.meal = meal;
@@ -41,11 +49,11 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 
-	public CartItemKey getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(CartItemKey id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
