@@ -24,6 +24,10 @@ public class Category {
 	@Column(name = "name")
 	private String name;
 	
+	@NotNull
+	@Column(name = "imageurl")
+	private String imageurl;
+	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
 	private List<Meal> meals;
 
@@ -31,10 +35,11 @@ public class Category {
 		
 	}
 
-	public Category(Integer id, @NotNull String name, List<Meal> meals) {
+	public Category(Integer id, @NotNull String name, @NotNull String imageurl, List<Meal> meals) {
 		super();
 		this.id = id;
 		this.name = name;
+		this.imageurl = imageurl;
 		this.meals = meals;
 	}
 
@@ -54,6 +59,14 @@ public class Category {
 		this.name = name;
 	}
 
+	public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
+
 	public List<Meal> getMeals() {
 		return meals;
 	}
@@ -67,6 +80,7 @@ public class Category {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((imageurl == null) ? 0 : imageurl.hashCode());
 		result = prime * result + ((meals == null) ? 0 : meals.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -85,6 +99,11 @@ public class Category {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (imageurl == null) {
+			if (other.imageurl != null)
+				return false;
+		} else if (!imageurl.equals(other.imageurl))
 			return false;
 		if (meals == null) {
 			if (other.meals != null)

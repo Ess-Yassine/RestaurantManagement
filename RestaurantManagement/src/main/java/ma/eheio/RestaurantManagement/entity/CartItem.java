@@ -3,6 +3,7 @@ package ma.eheio.RestaurantManagement.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,7 +21,7 @@ public class CartItem {
 	*/
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Integer id;
 	
@@ -29,10 +30,12 @@ public class CartItem {
 	@JoinColumn(name = "meal_id")
 	private Meal meal;
 	
+	/*
 	@ManyToOne
 	//@MapsId("customerId")
 	@JoinColumn(name = "customer_id")
 	private Customer customer;
+	*/
 	
 	@Column(name = "quantity")
 	private Integer quantity;
@@ -41,11 +44,10 @@ public class CartItem {
 		super();
 	}
 
-	public CartItem(Integer id, Meal meal, Customer customer, Integer quantity) {
+	public CartItem(Integer id, Meal meal, Integer quantity) {
 		super();
 		this.id = id;
 		this.meal = meal;
-		this.customer = customer;
 		this.quantity = quantity;
 	}
 
@@ -63,14 +65,6 @@ public class CartItem {
 
 	public void setMeal(Meal meal) {
 		this.meal = meal;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
 	}
 
 	public Integer getQuantity() {

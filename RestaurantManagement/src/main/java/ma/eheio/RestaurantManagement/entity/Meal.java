@@ -30,6 +30,10 @@ public class Meal {
 	@NotNull
 	@Column(name = "price")
 	private Double price;
+	
+	@NotNull
+	@Column(name = "imageurl")
+	private String imageurl;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "category_id")
@@ -39,12 +43,14 @@ public class Meal {
 		
 	}
 
-	public Meal(Integer id, @NotNull String name, @NotNull String ingredients, @NotNull Double price, Category category) {
+	public Meal(Integer id, @NotNull String name, @NotNull String ingredients, @NotNull Double price,
+			@NotNull String imageurl, Category category) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.ingredients = ingredients;
 		this.price = price;
+		this.imageurl = imageurl;
 		this.category = category;
 	}
 
@@ -80,6 +86,14 @@ public class Meal {
 		this.price = price;
 	}
 
+	public String getImageurl() {
+		return imageurl;
+	}
+
+	public void setImageurl(String imageurl) {
+		this.imageurl = imageurl;
+	}
+
 	public Category getCategory() {
 		return category;
 	}
@@ -94,6 +108,7 @@ public class Meal {
 		int result = 1;
 		result = prime * result + ((category == null) ? 0 : category.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((imageurl == null) ? 0 : imageurl.hashCode());
 		result = prime * result + ((ingredients == null) ? 0 : ingredients.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
@@ -118,6 +133,11 @@ public class Meal {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
+			return false;
+		if (imageurl == null) {
+			if (other.imageurl != null)
+				return false;
+		} else if (!imageurl.equals(other.imageurl))
 			return false;
 		if (ingredients == null) {
 			if (other.ingredients != null)
